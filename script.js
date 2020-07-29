@@ -40,8 +40,62 @@ function formatNumber(num){
     return num.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
 }
 
+const doubleMoney = () =>{
+    let double = data.map((item)=>{
+        return{name: item.name,
+        money: 2*item.money}
+    })
+    updateDOM(double)
+    data = [...double]
+
+
+}
+
+const onlyMillion = () =>{
+   let millioner= data.filter((item)=>{
+        return item.money>1000000
+    })
+    updateDOM(millioner)
+}
+
+const sortByRichest = () =>{
+    data.sort(function (a, b) {
+        return b.money - a.money;
+      });
+
+      updateDOM(data)
+
+   
+      
+}
+
+const calculateWeath = () =>{
+
+   let wealtharr = data.map((item)=>item.money)
+   const reducer = (acc, val)=>{
+       return acc+val
+   }
+
+   let totalWealth=wealtharr.reduce(reducer)
+   console.log(totalWealth);
+
+   if(document.querySelector('.wealth')==null){
+
+       const element = document.createElement('div');
+       element.classList.add('wealth')
+       element.innerHTML=`<strong>Total Wealth</strong> ${formatNumber(totalWealth)}`
+       main.appendChild(element)
+   }
+  
+
+
+}
 
 //Event Listeners
 getRandomUser()
 getRandomUser()
 addUserBtn.addEventListener('click', getRandomUser)
+doubleBtn.addEventListener('click', doubleMoney)
+showMillionariesBtn.addEventListener('click', onlyMillion)
+sortBtn.addEventListener('click', sortByRichest)
+calculateWealthBtn.addEventListener('click', calculateWeath)

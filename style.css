@@ -69,6 +69,16 @@ a{
     justify-content: space-between;
 }
 
+.wealth{
+    border-top: 3px solid black;
+    display: flex;
+    justify-content: space-between;
+    font-size: 25px;
+    margin-top: 20px;
+    padding-top: 10px;
+}
+
+
 @media (max-width:1000px){
     .container{
         display: flex;
